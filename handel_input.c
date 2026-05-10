@@ -81,7 +81,8 @@ int	main(int ac, char **av)
 		return (ft_error(a, NULL));
 	if (!Coordinate_stack(a))
 		return (ft_error(a, b));
-	my_algorithm(a, b);
+	if(ac <= 6)
+		basic_case(a,b,ac -1);
 	destroy_stack(a);
 	destroy_stack(b);
 	return (0);
