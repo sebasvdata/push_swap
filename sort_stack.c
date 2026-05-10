@@ -1,60 +1,79 @@
-#include <stdio.h>
+#include "push_swap.h"
 
-void recursive_merge(int *tab,int start,int end)
+t_stack	*ft_copy_stack(t_stack *a)
 {
-	int i;
-	int counter;
-	int j;
-	i=start;
-	counter=0;
-	j=(end+start)/2 +1;
-	if(start<end)
-	{
-		recursive_merge(tab,start,(end+start)/2);
-		recursive_merge(tab,(end+start)/2 +1,end);
-	}
-	int tmptab[end-start+1];
-	while(counter<=(end-start))
-	{
-		if(i<=(end+start)/2 && j<=end)
-		{
-			if(tab[i]<tab[j])
-				tmptab[counter]=tab[i++];
-			else
-				tmptab[counter]=tab[j++];
-		}
-		else if(i<=(end+start)/2)
-			tmptab[counter]=tab[i++];
-		else if(j<=end)
-			tmptab[counter]=tab[j++];
-		counter++;
-	}
-	counter=0;
-	while(start<=end)
-	{
-		tab[start]=tmptab[counter];
-		start++;
-		counter++;
-	}
-}
-void merge_sort(int *tab , int size)
-{
-	 recursive_merge(tab,0,size-1);
-}
+	t_stack	*copy;
+	int		i;
 
-int	main(void)
-{
-	int	tab[] = {5, 2, 9, 1, 3,6,9,100,-223,191919};
-	int	size;
-	int	i;
-
-	merge_sort(tab, 10);
+	copy = create_stack(a->size);
+	if (!copy)
+		return (NULL);
 	i = 0;
-	while (i < 10)
+	while (i <= a->top)
+		push_stack(copy, a->tab[i++]);
+	return (copy);
+}
+
+static void	copy_tmp(int *tab, int *tmp, int start, int end)
+{
+	int	i;
+	int	c;
+
+	i = start;
+	c = 0;
+	while (i <= end)
+		tab[i++] = tmp[c++];
+}
+
+static void	merge_tabs(int *tab, int start, int mid, int end)
+{
+	int	i;
+	int	j;
+	int	*tmp;
+	int	c;
+
+	i = start;
+	j = mid + 1;
+	c = 0;
+	tmp = malloc((end - start + 1) * sizeof(int));
+	if (!tmp)
+		return ;
+	while (i <= mid && j <= end)
 	{
-		printf("%d ", tab[i]);
-		i++;
+		if (tab[i] < tab[j])
+			tmp[c++] = tab[i++];
+		else
+			tmp[c++] = tab[j++];
 	}
-	printf("\n");
-	return (0);
+	while (i <= mid)
+		tmp[c++] = tab[i++];
+	while (j <= end)
+		tmp[c++] = tab[j++];
+	copy_tmp(tab, tmp, start, end);
+	free(tmp);
+}
+
+void	recursive_merge(int *tab, int start, int end)
+{
+	int	mid;
+
+	if (start >= end)
+		return ;
+	mid = (start + end) / 2;
+	recursive_merge(tab, start, mid);
+	recursive_merge(tab, mid + 1, end);
+	merge_tabs(tab, start, mid, end);
+}
+
+t_stack	*merge_sort(t_stack *a)
+{
+	t_stack	*copy;
+
+	if (!a || a->top <= 0)
+		return (NULL);
+	copy = ft_copy_stack(a);
+	if (!copy)
+		return (NULL);
+	recursive_merge(copy->tab, 0, copy->top);
+	return (copy);
 }

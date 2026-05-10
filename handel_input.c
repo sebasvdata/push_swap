@@ -61,15 +61,28 @@ t_stack	*ft_verfier(char *s[], int l)
 	return (st);
 }
 
-int	main(int l, char *s[])
+int	main(int ac, char **av)
 {
 	t_stack	*a;
+	t_stack	*b;
 
-	if (l == 1)
+	if (ac < 2)
 		return (0);
-	a = ft_verfier(s, l);
+	a = ft_verfier(av, ac);
 	if (!a)
-		return (write(2, "Error\n", 6));
+		return (ft_error(NULL, NULL));
+	if (a->top < 1 || ft_is_sorted(a))
+	{
+		destroy_stack(a);
+		return (0);
+	}
+	b = create_stack(ac - 1);
+	if (!b)
+		return (ft_error(a, NULL));
+	if (!Coordinate_stack(a))
+		return (ft_error(a, b));
+	my_algorithm(a, b);
 	destroy_stack(a);
+	destroy_stack(b);
 	return (0);
 }
