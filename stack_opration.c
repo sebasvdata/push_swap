@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void	swap_stack(t_stack *a,char c)
+void	swap_stack(t_stack *a, char c)
 {
 	int	tmp;
 	int	top;
@@ -11,13 +11,13 @@ void	swap_stack(t_stack *a,char c)
 	tmp = a->tab[top];
 	a->tab[top] = a->tab[top - 1];
 	a->tab[top - 1] = tmp;
-	if(c=='a')
-		write(1,"sa\n",3);
-	else if(c=='b')
-		write(1,"sb\n",3);
+	if (c == 'a')
+		write(1, "sa\n", 3);
+	else if (c == 'b')
+		write(1, "sb\n", 3);
 }
 
-void	push_in(t_stack *src, t_stack *dest,char c)
+void	push_in(t_stack *src, t_stack *dest, char c)
 {
 	int	top;
 
@@ -26,13 +26,13 @@ void	push_in(t_stack *src, t_stack *dest,char c)
 		return ;
 	push_stack(dest, src->tab[top]);
 	pop(src);
-	if(c=='a')
-                write(1,"pa\n",3);
-        else if(c=='b')
-                write(1,"pb\n",3);
+	if (c == 'a')
+		write(1, "pa\n", 3);
+	else if (c == 'b')
+		write(1, "pb\n", 3);
 }
 
-void	re_rotate_stack(t_stack *a,char c)
+void	re_rotate_stack(t_stack *a, char c)
 {
 	int	i;
 	int	last;
@@ -47,13 +47,13 @@ void	re_rotate_stack(t_stack *a,char c)
 		i++;
 	}
 	a->tab[(a->top)] = last;
-	if(c=='a')
-                write(1,"rra\n",4);
-        else if(c=='b')
-                write(1,"rrb\n",4);
+	if (c == 'a')
+		write(1, "rra\n", 4);
+	else if (c == 'b')
+		write(1, "rrb\n", 4);
 }
 
-void	rotate_stack(t_stack *a,char c)
+void	rotate_stack(t_stack *a, char c)
 {
 	int	top;
 	int	first;
@@ -70,8 +70,8 @@ void	rotate_stack(t_stack *a,char c)
 		i--;
 	}
 	a->tab[0] = first;
-	if(c=='a')
-                write(1,"ra\n",3);
-        else if(c=='b')
-                write(1,"rb\n",3);
+	if (c == 'a')
+		write(1, "ra\n", 3);
+	else if (c == 'b')
+		write(1, "rb\n", 3);
 }
