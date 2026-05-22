@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                       :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youssef <youssef@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 00:00:00 by youssef           #+#    #+#             */
-/*   Updated: 2026/05/13 00:00:00 by youssef          ###   ########.fr       */
+/*   Updated: 2026/05/22 19:51:36 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@ typedef struct s_stack
 	int	size;
 	int	top;
 }		t_stack;
+
+typedef struct s_option
+{
+        int   bench;
+	int   simple;
+	int   medium;
+	int   complx;
+        int   adaptive;	
+}               t_option;
+
 t_stack	*create_stack(int size);
 int		search_stack(t_stack *a, int value);
 t_stack	*destroy_stack(t_stack *a);
@@ -36,18 +46,10 @@ int		ft_strlen(char *s);
 int		ft_error(t_stack *a, t_stack *b);
 int		ft_is_sorted(t_stack *a);
 int		ft_parse(char *s, int *out);
-t_stack	*ft_verfier(char *s[], int l);
-void	recursive_merge(int *tab, int start, int end);
-t_stack	*merge_sort(t_stack *a);
-int		coordinate_stack(t_stack *a);
-int		bits_represtntion(int n);
-void	divied_by2(t_stack *a);
-void	min_moves(t_stack *a, t_stack *b, int value);
-int		first_to_push(t_stack *a);
-void	sort_2(t_stack *a);
-void	sort_3(t_stack *a);
-void	sort_4(t_stack *a, t_stack *b);
-void	sort_5(t_stack *a, t_stack *b);
-void	basic_case(t_stack *a, t_stack *b, int size);
+t_stack	*ft_verfier(char *s[], int l,int skip);
+int ft_strcmp(char *s1,char *s2);
+void ft_op(t_option *p);
+int already_option(t_option *p);
+int ft_option(char *s,t_option *p);
 
 #endif
