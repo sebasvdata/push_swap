@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 00:00:00 by youssef           #+#    #+#             */
-/*   Updated: 2026/05/22 19:51:36 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/05/23 21:20:42 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,22 @@ typedef struct s_option
 	int   complx;
         int   adaptive;	
 }               t_option;
-
+typedef struct s_benchmark
+{
+        int   sa;
+        int   sb;
+        int   ss;
+        int   pa;
+        int   pb;
+	int   ra;
+	int   rb;
+	int   rr;
+	int   rra;
+	int   rrb;
+	int   rrr;
+	int   disorder;
+	char  *startegy;
+}               t_benchmark;
 t_stack	*create_stack(int size);
 int		search_stack(t_stack *a, int value);
 t_stack	*destroy_stack(t_stack *a);
@@ -51,5 +66,8 @@ int ft_strcmp(char *s1,char *s2);
 void ft_op(t_option *p);
 int already_option(t_option *p);
 int ft_option(char *s,t_option *p);
-
+int ft_skip(t_option *op,char **av,int ac);
+void ft_bzero(void *p,size_t size);
+t_benchmark * decide_algorithm(t_stack *a,t_stack *b,t_option *op);
+void ft_simple(t_stack *a ,t_stack *b,t_benchmark *bench);
 #endif

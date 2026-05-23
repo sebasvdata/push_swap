@@ -7,18 +7,9 @@ int ft_strcmp(char *s1,char *s2)
 		i++;
 	return s1[i]-s2[i];
 }
-void ft_op(t_option *p)
-{
-    p->adaptive=1;
-    p->complx=0;
-    p->medium=0;
-    p->simple=0;
-    p->bench=0;
-
-}
 int already_option(t_option *p)
 {
-        if(p->adaptive==2)
+        if(p->adaptive)
 			return 0;
         else if(p->complx)
 			return 0;
@@ -45,4 +36,16 @@ int ft_option(char *s,t_option *p)
 	else
 		return 0;
 	return 1;
+}
+int ft_skip(t_option *op,char **av,int ac)
+{
+	int skip;
+	ft_bzero(op,sizeof(t_option));
+        skip=ft_option(av[1],op);
+        if(1+skip>=ac)
+                return -1;
+        skip+=ft_option(av[1+skip],op);
+        if(1+skip>=ac)
+                return -1;
+	return skip;
 }
