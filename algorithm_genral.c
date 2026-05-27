@@ -9,10 +9,10 @@ void ft_bzero(void *p,size_t size)
 }
 int ft_disorder(t_stack *a)
 {
-	int mistakes;
-	int total_pairs;
+	float mistakes;
+	float total_pairs;
 	int i;
-        int j;
+    int j;
 	mistakes = 0;
 	total_pairs = 0;
 	i=0;
@@ -28,7 +28,7 @@ int ft_disorder(t_stack *a)
 		}
 		i++;
 	}
-	return mistakes / total_pairs;
+	return ((mistakes / total_pairs)*10000);
 }
 static t_benchmark * intiat_bench(t_stack *a,t_option *op)
 {
@@ -50,7 +50,7 @@ static t_benchmark * intiat_bench(t_stack *a,t_option *op)
                 //we implent later
 	return bench;
 }
-t_benchmark * decide_algorithm(t_stack *a,t_stack *b,t_option *op)
+void decide_algorithm(t_stack *a,t_stack *b,t_option *op)
 {
 	t_benchmark *bench;
 
@@ -65,5 +65,6 @@ t_benchmark * decide_algorithm(t_stack *a,t_stack *b,t_option *op)
 		//we implement later ft_adaptive
 	//else 
 		//we implement later ft_adaptive (default)
-	return bench;
+	if(op->bench)
+		display_bench(bench);
 }

@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 00:00:00 by youssef           #+#    #+#             */
-/*   Updated: 2026/05/23 21:20:42 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/05/27 21:48:09 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdarg.h>
 
 typedef struct s_stack
 {
@@ -53,10 +54,10 @@ t_stack	*destroy_stack(t_stack *a);
 t_stack	*ft_copy_stack(t_stack *a);
 int		push_stack(t_stack *s, int value);
 int		pop(t_stack *s);
-void	swap_stack(t_stack *a, char c);
-void	push_in(t_stack *src, t_stack *dest, char c);
-void	re_rotate_stack(t_stack *a, char c);
-void	rotate_stack(t_stack *a, char c);
+int	swap_stack(t_stack *a, char c);
+int	push_in(t_stack *src, t_stack *dest, char c);
+int	re_rotate_stack(t_stack *a, char c);
+int	rotate_stack(t_stack *a, char c);
 int		ft_strlen(char *s);
 int		ft_error(t_stack *a, t_stack *b);
 int		ft_is_sorted(t_stack *a);
@@ -68,6 +69,10 @@ int already_option(t_option *p);
 int ft_option(char *s,t_option *p);
 int ft_skip(t_option *op,char **av,int ac);
 void ft_bzero(void *p,size_t size);
-t_benchmark * decide_algorithm(t_stack *a,t_stack *b,t_option *op);
+void decide_algorithm(t_stack *a,t_stack *b,t_option *op);
 void ft_simple(t_stack *a ,t_stack *b,t_benchmark *bench);
+char	*get_next_line(int fd);
+int ft_opration(char *s,t_stack *a,t_stack *b);
+void display_bench(t_benchmark *bench);
+int     ft_printf(const char *s, ...);
 #endif

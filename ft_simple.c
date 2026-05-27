@@ -29,7 +29,7 @@ void ft_simple(t_stack *a ,t_stack *b,t_benchmark *bench)
 		else
 		{
 			rotate_stack(a,'a');
-			(bench->sa)++;
+			(bench->ra)++;
 		}
 	}
 	while(b->top > -1)
