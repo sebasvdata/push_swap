@@ -49,11 +49,11 @@ int	re_rotate_stack(t_stack *a, char c)
 		i++;
 	}
 	a->tab[(a->top)] = last;
-	return 1;
 	if (c == 'a')
 		write(1, "rra\n", 4);
 	else if (c == 'b')
 		write(1, "rrb\n", 4);
+	return 1;
 }
 
 int	rotate_stack(t_stack *a, char c)

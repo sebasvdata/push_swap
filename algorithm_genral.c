@@ -33,7 +33,7 @@ int ft_disorder(t_stack *a)
 static t_benchmark * intiat_bench(t_stack *a,t_option *op)
 {
 	t_benchmark *bench;
-	bench=malloc(sizeof(t_benchmark *));
+	bench=malloc(sizeof(t_benchmark));
 	if(!bench)
 		return NULL;
 	ft_bzero(bench,sizeof(t_benchmark));
@@ -57,8 +57,8 @@ void decide_algorithm(t_stack *a,t_stack *b,t_option *op)
 	bench=intiat_bench(a,op);
 	if(op->simple)
 		ft_simple(a,b,bench);
-	//else if(op->medium)
-		//we implement later ft_meduim
+	else if(op->medium)
+		ft_medium(a,b,bench);
 	//else if(op->complx)
 		//we implement later ft_complex
 	//else if(op->adaptive)
@@ -67,4 +67,5 @@ void decide_algorithm(t_stack *a,t_stack *b,t_option *op)
 		//we implement later ft_adaptive (default)
 	if(op->bench)
 		display_bench(bench);
+	ft_medium(a,b,bench);
 }

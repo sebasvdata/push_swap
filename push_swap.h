@@ -75,4 +75,6 @@ char	*get_next_line(int fd);
 int ft_opration(char *s,t_stack *a,t_stack *b);
 void display_bench(t_benchmark *bench);
 int     ft_printf(const char *s, ...);
+int normlize_stack(t_stack *a);
+void    ft_medium(t_stack *a, t_stack *b, t_benchmark *bench);
 #endif
