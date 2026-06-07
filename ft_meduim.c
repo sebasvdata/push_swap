@@ -8,11 +8,13 @@ static int	ft_sqrt(int nb)
 		i++;
 	return (i);
 }
-int better_cost(t_stack *b,int min)
+static int rot_dir(t_stack *b,int min)
 {
 	int i;
 	int r;
 	int rr;
+	r=0;
+	rr=0;
 	i=b->top;
 	while(b->tab[i--]!=min)
 		r++;
@@ -21,14 +23,14 @@ int better_cost(t_stack *b,int min)
                 rr++;
 	return (r<=rr);
 }
-void move_back(t_stack *a, t_stack *b, t_benchmark *bench)
+static void move_back(t_stack *a, t_stack *b, t_benchmark *bench)
 {
 	int min;
 	int rotation;
 	min=b->top;
 	while(b->top >-1)
 	{
-		rotation=better_cost(b,min);
+		rotation=rot_dir(b,min);
 		while(b->tab[b->top]!=min)
 		{
 			if(rotation)

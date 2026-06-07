@@ -15,6 +15,8 @@ int	swap_stack(t_stack *a, char c)
 		write(1, "sa\n", 3);
 	else if (c == 'b')
 		write(1, "sb\n", 3);
+	else if (c == 's')
+		write(1, "ss\n", 3);
 	return 1;
 }
 

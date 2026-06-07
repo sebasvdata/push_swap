@@ -15,7 +15,7 @@ int ft_disorder(t_stack *a)
     int j;
 	mistakes = 0;
 	total_pairs = 0;
-	i=0;
+	i=-1;
 	while(i<(a->top))
 	{
 		j=i+1;
@@ -59,13 +59,13 @@ void decide_algorithm(t_stack *a,t_stack *b,t_option *op)
 		ft_simple(a,b,bench);
 	else if(op->medium)
 		ft_medium(a,b,bench);
-	//else if(op->complx)
-		//we implement later ft_complex
+	else if(op->complx)
+		radix_sort(a,b,bench);
 	//else if(op->adaptive)
 		//we implement later ft_adaptive
 	//else 
 		//we implement later ft_adaptive (default)
 	if(op->bench)
 		display_bench(bench);
-	ft_medium(a,b,bench);
+	//ft_medium(a,b,bench);
 }

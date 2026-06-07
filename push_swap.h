@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 00:00:00 by youssef           #+#    #+#             */
-/*   Updated: 2026/05/27 21:48:09 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/07 17:36:13 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void display_bench(t_benchmark *bench);
 int     ft_printf(const char *s, ...);
 int normlize_stack(t_stack *a);
 void    ft_medium(t_stack *a, t_stack *b, t_benchmark *bench);
+void radix_sort(t_stack *a,t_stack *b, t_benchmark *bench);
 #endif
