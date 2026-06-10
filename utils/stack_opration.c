@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	swap_stack(t_stack *a, char c)
 {
@@ -79,6 +79,8 @@ int	rotate_stack(t_stack *a, char c)
 		write(1, "ra\n", 3);
 	else if (c == 'b')
 		write(1, "rb\n", 3);
+	else if(c=='r')
+		write(1, "rr\n", 3);
 	return 1;
 	
 }

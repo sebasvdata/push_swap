@@ -1,13 +1,13 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	better_base(int nb)
 {
 	int	i;
 
 	i = 1;
-	while (i * i + i < nb)
+	while (i * i < nb)
 		i++;
-	return (i + 1);
+	return (i );
 }
 
 static int	mosts_digit(int n, int base)
@@ -15,7 +15,7 @@ static int	mosts_digit(int n, int base)
 	return (n / base);
 }
 
-int	better_cost(t_stack *b, int min)
+static int	better_cost(t_stack *b, int min)
 {
 	int	i;
 
@@ -27,7 +27,7 @@ int	better_cost(t_stack *b, int min)
 	return ((b->top - i) <= i);
 }
 
-void	move_back(t_stack *a, t_stack *b, t_benchmark *bench)
+static void	move_back(t_stack *a, t_stack *b, t_benchmark *bench)
 {
 	int	min;
 	int	rotation;
@@ -57,46 +57,74 @@ void	move_back(t_stack *a, t_stack *b, t_benchmark *bench)
 			min--;
 	}
 }
+static int smart_rotation(t_stack *a,t_stack *b ,t_benchmark * bench ,int rr)
+{
+			if(rr && b->top >=1)
+			{
+				rotate_stack(b,0);
+				rotate_stack(a,'r');
+				(bench->rr)++;
+			}
+			else
+			{
+				rotate_stack(a, 'a');
+				(bench->ra)++;
+			}
+			return 0;
+}
+
+static int next_digits(t_stack *a,int *upper,int *bottom)
+{
+	int j;
+	int digit;
+	int base;
+	
+	j=0;
+	base = better_base(a->size);
+	while(j <= a->top)
+	{
+		digit = mosts_digit(a->tab[j], base);
+		if(digit == *upper || digit == *bottom)
+			return 0;
+		j++;
+	}
+	(*upper)++;
+	(*bottom)--;
+	return 1;
+}
 
 void	radix_sort(t_stack *a, t_stack *b, t_benchmark *bench)
 {
 	int	base;
 	int	upper;
 	int	bottom;
-	int	i;
 	int	digit;
+	int rr;
 
-	normlize_stack(a);
+
 	base = better_base(a->size);
 	upper = base / 2;
 	bottom = upper - 1;
-	i = 2;
+	rr=0;
 	while (a->top > -1)
 	{
 		digit = mosts_digit(a->tab[a->top], base);
-		if (digit == upper)
+		if (digit == upper || digit ==bottom)
 		{
+			if(rr && b->top >=1)
+			{
+				rotate_stack(b,'b');
+				(bench->rb)++;
+			}
 			push_in(a, b, 'b');
 			(bench->pb)++;
-		}
-		else if (digit == bottom)
-		{
-			push_in(a, b, 'b');
-			rotate_stack(b, 'b');
-			(bench->pb)++;
-			(bench->rb)++;
+			rr=0;
+			if(digit== bottom)
+				rr=1;
 		}
 		else
-		{
-			rotate_stack(a, 'a');
-			(bench->ra)++;
-		}
-		if (bench->pb >= i * base)
-		{
-			bottom--;
-			upper++;
-			i += 2;
-		}
+			rr=smart_rotation(a,b,bench,rr);
+		next_digits(a,&upper,&bottom);
 	}
 	move_back(a, b, bench);
 }

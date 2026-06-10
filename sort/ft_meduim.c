@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 static int	ft_sqrt(int nb)
 {
 	int	i;
@@ -10,19 +10,16 @@ static int	ft_sqrt(int nb)
 }
 static int rot_dir(t_stack *b,int min)
 {
-	int i;
-	int r;
-	int rr;
-	r=0;
-	rr=0;
-	i=b->top;
-	while(b->tab[i--]!=min)
-		r++;
-	i=0;
-	while(b->tab[i++]!=min)
-                rr++;
-	return (r<=rr);
+	int	i;
+
+	i = b->top;
+	while (i >= 0 && b->tab[i] != min)
+		i--;
+	if (i < 0)
+		return (1);
+	return ((b->top - i) <= i);
 }
+
 static void move_back(t_stack *a, t_stack *b, t_benchmark *bench)
 {
 	int min;
@@ -39,16 +36,31 @@ static void move_back(t_stack *a, t_stack *b, t_benchmark *bench)
                         	(bench->rb)++;
 			}
 			else
-                	{
+            {
                      		re_rotate_stack(b,'b');
                       		(bench->rrb)++;
-                	}
+            }
 		}
 		push_in(b, a, 'a');
                 (bench->pa)++;
 		min=b->top;
 	}
 }
+
+static int next_partition(t_stack *a,int i,int sqt)
+{
+	int j;
+	
+	j=0;
+	while(j <= a->top)
+	{
+		if(a->tab[j]>=i * sqt  && a->tab[j]<(i +1)*sqt )
+			return 0;
+		j++;
+	}
+	return 1;
+}
+
 void	ft_medium(t_stack *a, t_stack *b, t_benchmark *bench)
 {
 	int i;
@@ -56,8 +68,6 @@ void	ft_medium(t_stack *a, t_stack *b, t_benchmark *bench)
 
 	i = 0;
 	sqt=ft_sqrt(a->size);
-	if(normlize_stack(a))
-		ft_error(a,b);
 	while (a->top > - 1)
 	{
 		if (a->tab[a->top]>=i * sqt  && a->tab[a->top]<(i +1)*sqt )
@@ -70,8 +80,7 @@ void	ft_medium(t_stack *a, t_stack *b, t_benchmark *bench)
 			rotate_stack(a, 'a');
 			(bench->ra)++;
 		}
-		if (bench->pb >= (i+1) * sqt )
-			i++;
+		i += next_partition(a,i,sqt);
 	}
 	move_back(a,b,bench);
 }

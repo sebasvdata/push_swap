@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 19:37:49 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/05/26 20:39:35 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/09 22:48:04 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include"../push_swap.h"
 
-int	ft_strlennew(char *s)
+static int	len_string(char *s)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	ft_strlennew(char *s)
 	return (i);
 }
 
-void	ft_strcpy(char *dest, char *src)
+static void	ft_strcpy(char *dest, char *src)
 {
 	int	i;
 
@@ -41,29 +41,29 @@ void	ft_strcpy(char *dest, char *src)
 	dest[i] = '\0';
 }
 
-void	ft_shift(char *buffer)
+static void	ft_shift(char *buffer)
 {
 	int	skip;
 	int	i;
 
 	i = 0;
-	skip = ft_strlennew(buffer);
+	skip = len_string(buffer);
 	if (buffer[skip])
 		skip++;
 	while (buffer[skip])
 		buffer[i++] = buffer[skip++];
-	while (i < BUFFER_SIZE)
+	while (i < 64)
 		buffer[i++] = '\0';
 }
 
-char	*ft_strjoin(char *line, char *buffer)
+static char	*ft_strjoin(char *line, char *buffer)
 {
 	char	*joined;
 	int		ll;
 	int		bl;
 
-	bl = ft_strlennew(buffer);
-	ll = ft_strlennew(line);
+	bl = len_string(buffer);
+	ll = len_string(line);
 	if (buffer[bl])
 		bl++;
 	joined = malloc((bl + ll + 1) * sizeof(char));
@@ -74,4 +74,29 @@ char	*ft_strjoin(char *line, char *buffer)
 	if (line)
 		free(line);
 	return (joined);
+}
+
+char	*get_next_line(int fd)
+{
+	static char	buffer[64 + 1];
+	char		*line;
+	int			bytes;
+
+	line = NULL;
+	bytes = 1;
+	if (!buffer[0])
+		bytes = read(fd, buffer, 64);
+	while (bytes > 0)
+	{
+		line = ft_strjoin(line, buffer);
+		ft_shift(buffer);
+		if (!line)
+			return (NULL);
+		if (line[len_string(line)])
+			break ;
+		bytes = read(fd, buffer, 64);
+	}
+	if (bytes == -1)
+		return (free(line), (NULL));
+	return (line);
 }

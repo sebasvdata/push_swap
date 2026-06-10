@@ -1,6 +1,6 @@
-#include "push_swap.h"
-#include "get_next_line.h"
-int ft_opration(char *s,t_stack *a,t_stack *b)
+#include "../push_swap.h"
+
+static int ft_opration(char *s,t_stack *a,t_stack *b)
 {
 	if(!ft_strcmp(s,"pa\n"))
 		return push_in(a,b,0);
@@ -26,7 +26,8 @@ int ft_opration(char *s,t_stack *a,t_stack *b)
         return (swap_stack(a,0) && swap_stack(b,0));
 	return 0;
 }
-int check_opration(t_stack *a,t_stack *b)
+
+static int check_opration(t_stack *a,t_stack *b)
 {
 	char *s;
 	s=get_next_line(0);
@@ -40,10 +41,11 @@ int check_opration(t_stack *a,t_stack *b)
 			return 0;
 		}
 	}
-	if(ft_is_sorted(a) && b->top==-1) //after opration check if sorted and b empty not ony sorted
+	if(ft_is_sorted(a) && b->top==-1) 
 		return write(1,"ok\n",3);
 	return write(1,"ko\n",3);
 }
+
 int	main(int ac, char **av)
 {
 	t_stack	*a;

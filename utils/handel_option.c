@@ -1,4 +1,4 @@
-#include"push_swap.h"
+#include"../push_swap.h"
 int ft_strcmp(char *s1,char *s2)
 {
 	int i;
@@ -7,7 +7,7 @@ int ft_strcmp(char *s1,char *s2)
 		i++;
 	return s1[i]-s2[i];
 }
-int already_option(t_option *p)
+static int already_option(t_option *p)
 {
         if(p->adaptive)
 			return 0;
@@ -21,7 +21,7 @@ int already_option(t_option *p)
 			return 2;
         return 1;
 }
-int ft_option(char *s,t_option *p)
+static int ft_option(char *s,t_option *p)
 {
 	if(!ft_strcmp(s,"--adaptive") && already_option(p))
 		p->adaptive++;

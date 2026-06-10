@@ -1,5 +1,5 @@
-#include"push_swap.h"
-void ft_memcpy(void *dst,void*src,int n)
+#include"../push_swap.h"
+static void ft_memcpy(void *dst,void*src,int n)
 {
 	char *d;
 	char *s;

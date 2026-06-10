@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	ft_strlen(char *s)
 {
@@ -10,7 +10,7 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-int	ft_parse(char *s, int *out)
+static int	ft_parse(char *s, int *out)
 {
 	int		i;
 	long	re;

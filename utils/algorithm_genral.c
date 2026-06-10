@@ -1,13 +1,6 @@
-#include "push_swap.h"
-void ft_bzero(void *p,size_t size)
-{
-	char *s;
+#include "../push_swap.h"
 
-	s=(char *)p;
-	while(size--)
-		*(s++)='\0';
-}
-int ft_disorder(t_stack *a)
+float ft_disorder(t_stack *a)
 {
 	float mistakes;
 	float total_pairs;
@@ -28,8 +21,27 @@ int ft_disorder(t_stack *a)
 		}
 		i++;
 	}
-	return ((mistakes / total_pairs)*10000);
+	return ((mistakes / total_pairs));
 }
+
+ void ft_bzero(void *p,size_t size)
+{
+	char *s;
+
+	s=(char *)p;
+	while(size--)
+		*(s++)='\0';
+}
+
+static char *strategy_bench(float n)
+{
+	if(n < 0.2)
+		return "Simple / O(n^2)";
+	else if( n >= 0.2 && n < 0.5)
+		return "medium /  O(n√n)";
+	return "Complex / O(n log(n))";
+}
+
 static t_benchmark * intiat_bench(t_stack *a,t_option *op)
 {
 	t_benchmark *bench;
@@ -41,31 +53,30 @@ static t_benchmark * intiat_bench(t_stack *a,t_option *op)
 	if(op->simple)
                 bench->startegy="Simple / O(n^2)";
         else if(op->medium)
-                bench->startegy="medium / O(n log(n))";
+                bench->startegy="medium/  O(n√n)";
         else if(op->complx)
-                bench->startegy="Complex /  O(n√n)";
-        //else if(op->adaptive)
-		//we implent late bench->startegy
-        //else
-                //we implent later
+                bench->startegy="Complex / O(n log(n))";
+        else
+                bench->startegy= strategy_bench(ft_disorder(a));
 	return bench;
 }
-void decide_algorithm(t_stack *a,t_stack *b,t_option *op)
+int decide_algorithm(t_stack *a,t_stack *b,t_option *op)
 {
 	t_benchmark *bench;
 
 	bench=intiat_bench(a,op);
+	if(!bench)
+		return 1;
 	if(op->simple)
 		ft_simple(a,b,bench);
 	else if(op->medium)
 		ft_medium(a,b,bench);
 	else if(op->complx)
 		radix_sort(a,b,bench);
-	//else if(op->adaptive)
-		//we implement later ft_adaptive
 	//else 
-		//we implement later ft_adaptive (default)
+		//ft_adaptive(a,b,bench);
 	if(op->bench)
 		display_bench(bench);
-	//ft_medium(a,b,bench);
+	free(bench);
+	return 0;
 }

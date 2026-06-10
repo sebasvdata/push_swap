@@ -1,5 +1,5 @@
-#include"push_swap.h"
-int	ft_print_number(int nb)
+#include"../push_swap.h"
+static int	ft_print_number(int nb)
 {
 	long	n;
 	char	c;
@@ -19,12 +19,12 @@ int	ft_print_number(int nb)
 	return (re);
 }
 
-int	ft_print_string(char *s)
+static int	ft_print_string(char *s)
 {
 	return (write(2, s, ft_strlen(s)));
 }
 
-int	ft_print(char c, va_list *ar)
+static int	ft_print(char c, va_list *ar)
 {
 	if (c == 'd')
 		return (ft_print_number(va_arg(*ar, int)));
