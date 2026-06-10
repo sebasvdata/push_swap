@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoben-ch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:11 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/10 23:37:11 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/11 01:14:47 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static int check_opration(t_stack *a,t_stack *b,char **av)
 		}
 		else
 		{
+			free(s);
 			ft_error(a,b,av);
 			return 0;
 		}

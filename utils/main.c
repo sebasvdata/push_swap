@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoben-ch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:31 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/10 23:37:31 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/11 01:01:46 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int ac, char **av)
 	a = ft_verfier(av, ac,ft_skip(&op,av,ac));
 	if (!a || normlize_stack(a))
 		return (ft_error(a, NULL,av));
-	if (a->top < 1 || ft_is_sorted(a))
-		return (liberty(a, b, av),0);
+	if (a->top < 1)
+		return (liberty(NULL, NULL, av),0);
 	b = create_stack(ac - 1);
 	if (!b)
 		return (ft_error(a, NULL,av));

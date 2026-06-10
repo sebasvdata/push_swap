@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:31 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/10 23:41:45 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/11 00:51:32 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	init_stack(char ***av, int *ac)
 	joined = join_args(*av , *ac);
 	if(!joined)
 		return 1;
-	*ac = ft_count_words(joined, ' ');
 	*av = ft_split(joined, ' ');
-	free(joined);
-	if(!(*av))
+	if(!(*av) || *ac > ft_count_words(joined, ' '))
 		return 1;
+	*ac = ft_count_words(joined, ' ');
+	free(joined);
 	return (0);
 }
 

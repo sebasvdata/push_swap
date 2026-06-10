@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 00:00:00 by youssef           #+#    #+#             */
-/*   Updated: 2026/06/10 23:36:49 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/11 01:20:18 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_benchmark
 
 
 char	*get_next_line(int fd);
-float ft_disorder(t_stack *a);
+int ft_disorder(t_stack *a);
 int decide_algorithm(t_stack *a,t_stack *b,t_option *op);
 int normlize_stack(t_stack *a);
 t_stack	*create_stack(int size);
@@ -81,5 +81,6 @@ void ft_simple(t_stack *a ,t_stack *b,t_benchmark *bench);
 void	ft_medium(t_stack *a, t_stack *b, t_benchmark *bench);
 void	radix_sort(t_stack *a, t_stack *b, t_benchmark *bench);
  void ft_bzero(void *p,size_t size);
+void ft_adaptive(t_stack *a,t_stack * b, t_benchmark *bench);
 
 #endif

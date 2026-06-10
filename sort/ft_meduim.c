@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_meduim.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoben-ch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:24 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/10 23:37:24 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/11 01:16:06 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	ft_sqrt(int nb)
 		i++;
 	return (i);
 }
+
 static int rot_dir(t_stack *b,int min)
 {
 	int	i;

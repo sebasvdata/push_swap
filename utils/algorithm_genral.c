@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   algorithm_genral.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoben-ch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:31 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/10 23:37:31 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/11 01:09:59 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-float ft_disorder(t_stack *a)
+int ft_disorder(t_stack *a)
 {
 	float mistakes;
 	float total_pairs;
@@ -20,20 +20,20 @@ float ft_disorder(t_stack *a)
     int j;
 	mistakes = 0;
 	total_pairs = 0;
-	i=-1;
-	while(i<(a->top))
+	i=a->top;
+	while(i>=0)
 	{
-		j=i+1;
-		while(j<(a->top))
+		j=i-1;
+		while(j>=0)
 		{
 			total_pairs += 1;
 			if (a->tab[i] > a->tab[j])
 				mistakes += 1;
-			j++;
+			j--;
 		}
-		i++;
+		i--;
 	}
-	return ((mistakes / total_pairs));
+	return ((mistakes / total_pairs)*10000);
 }
 
  void ft_bzero(void *p,size_t size)
@@ -45,13 +45,13 @@ float ft_disorder(t_stack *a)
 		*(s++)='\0';
 }
 
-static char *strategy_bench(float n)
+static char *strategy_bench(int n)
 {
-	if(n < 0.2)
-		return "Simple / O(n^2)";
-	else if( n >= 0.2 && n < 0.5)
-		return "medium /  O(n√n)";
-	return "Complex / O(n log(n))";
+	if(n <2000)
+		return "adaptive / O(n^2)";
+	else if( n >= 2000 && n < 5000)
+		return "adaptive /  O(n√n)";
+	return "adaptive / O(n log(n))";
 }
 
 static t_benchmark * intiat_bench(t_stack *a,t_option *op)
@@ -79,14 +79,19 @@ int decide_algorithm(t_stack *a,t_stack *b,t_option *op)
 	bench=intiat_bench(a,op);
 	if(!bench)
 		return 1;
+	if(op->bench && ft_is_sorted(a))
+	{
+		display_bench(bench);
+		return free(bench),1;
+	}
 	if(op->simple)
 		ft_simple(a,b,bench);
 	else if(op->medium)
 		ft_medium(a,b,bench);
 	else if(op->complx)
 		radix_sort(a,b,bench);
-	//else 
-		//ft_adaptive(a,b,bench);
+	else 
+		ft_adaptive(a,b,bench);
 	if(op->bench)
 		display_bench(bench);
 	free(bench);
