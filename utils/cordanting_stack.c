@@ -23,7 +23,7 @@ static void bubble_sort(int *tab,int size)
         {
                 i=size-1;
                 looping=0;
-                while(i >= 0)
+                while(i > 0)
                 {
                         if(tab[i] < tab[i-1])
                         {
