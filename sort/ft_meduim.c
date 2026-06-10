@@ -42,7 +42,7 @@ static void move_back(t_stack *a, t_stack *b, t_benchmark *bench)
             }
 		}
 		push_in(b, a, 'a');
-                (bench->pa)++;
+        (bench->pa)++;
 		min=b->top;
 	}
 }

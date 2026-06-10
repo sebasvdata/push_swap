@@ -1,17 +1,8 @@
 #include"../push_swap.h"
-static void ft_memcpy(void *dst,void*src,int n)
+static void ft_memcpy(int *dst,int*src,int n)
 {
-	char *d;
-	char *s;
-
-	d=(char *)dst;
-	s=(char *)src;
-	while(n--)
-	{
-		*(d)=*(s);
-		d++;
-		s++;
-	}
+	while(--n >=0)
+		dst[n]=src[n];
 }
 static void bubble_sort(int *tab,int size)
 {
@@ -46,7 +37,7 @@ int normlize_stack(t_stack *a)
 	tab=malloc((a->size)*sizeof(int));
 	if(!tab)
 		return 1;
-	ft_memcpy(tab,a->tab,a->size*sizeof(int));
+	ft_memcpy(tab,a->tab,a->size);
 	bubble_sort(tab,a->size);
 	i=0;
 	while(i< a->size)
@@ -55,7 +46,10 @@ int normlize_stack(t_stack *a)
 		while(j< a->size)
 		{
 			if(a->tab[i]==tab[j])
+			{
 				a->tab[i]=j;
+				break;
+			}
 			j++;
 		}
 		i++;

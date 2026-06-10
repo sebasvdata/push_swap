@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 00:00:00 by youssef           #+#    #+#             */
-/*   Updated: 2026/06/10 00:54:22 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/10 23:13:48 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	free_split(char **split);
 char	*ft_strdup(char *s);
 int	liberty(t_stack *a, t_stack *b, char **splited);
 int	init_stack(char ***av, int *ac);
-int	ft_error(t_stack *a, t_stack *b);
+int	ft_error(t_stack *a, t_stack *b,char **av);
 int	ft_is_sorted(t_stack *a);
 int	ft_printf(const char *s, ...);
 int	swap_stack(t_stack *a, char c);

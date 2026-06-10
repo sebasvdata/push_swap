@@ -26,12 +26,9 @@ int	init_stack(char ***av, int *ac)
 	return (0);
 }
 
-int	ft_error(t_stack *a, t_stack *b)
+int	ft_error(t_stack *a, t_stack *b,char **av)
 {
-	if (a)
-		destroy_stack(a);
-	if (b)
-		destroy_stack(b);
+	liberty(a, b, av);
 	write(2, "Error\n", 6);
 	return (1);
 }

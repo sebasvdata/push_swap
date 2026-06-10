@@ -27,17 +27,20 @@ static int ft_opration(char *s,t_stack *a,t_stack *b)
 	return 0;
 }
 
-static int check_opration(t_stack *a,t_stack *b)
+static int check_opration(t_stack *a,t_stack *b,char **av)
 {
 	char *s;
 	s=get_next_line(0);
 	while(s)
 	{
 		if(ft_opration(s,a,b))
+		{
+			free(s);
 			s=get_next_line(0);
+		}
 		else
 		{
-			ft_error(a,b);
+			ft_error(a,b,av);
 			return 0;
 		}
 	}
@@ -54,14 +57,17 @@ int	main(int ac, char **av)
 
 	if (ac < 2)
 		return (0);
+	if(init_stack(&av,&ac))
+		return ft_error(NULL,NULL,av);
 	a = ft_verfier(av, ac,0);
 	if (!a)
-		return (ft_error(NULL, NULL));
+		return (ft_error(NULL, NULL,av));
 	if (a->top < 1 || ft_is_sorted(a))
 		return (destroy_stack(a),write(1,"ok\n",3));
 	b = create_stack(ac - 1);
 	if (!b)
-		return (ft_error(a, NULL));
-    check_opration(a,b);
+		return (ft_error(a, NULL,av));
+    check_opration(a,b,av);
+	liberty(a,b,av);
 	return (0);
 }

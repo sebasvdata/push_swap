@@ -52,7 +52,10 @@ static void	move_back(t_stack *a, t_stack *b, t_benchmark *bench)
 		push_in(b, a, 'a');
 		(bench->pa)++;
 		if (a->top >= 1 && a->tab[a->top] > a->tab[a->top - 1])
+		{
 			swap_stack(a, 'a');
+			(bench->sa)++;
+		}
 		while (b->top > -1 && !search_stack(b, min))
 			min--;
 	}
