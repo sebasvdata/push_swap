@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../push_swap.h"
+#include "../push_swap.h"
+
 static int	ft_print_number(int nb)
 {
 	long	n;
@@ -56,7 +57,7 @@ int	ft_printf(const char *s, ...)
 	va_start(ar, s);
 	while (s[i])
 	{
-		if (s[i] == '%' && (s[i+1]=='s' || s[i+1]=='d'))
+		if (s[i] == '%' && (s[i + 1] == 's' || s[i + 1] == 'd'))
 		{
 			re += ft_print(s[i + 1], &ar);
 			i += 2;

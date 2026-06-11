@@ -14,9 +14,9 @@
 
 static char	*new_arg(char **av, int ac, char *new_str)
 {
-	int		i;
-	int		j;
-	int		k;
+	int	i;
+	int	j;
+	int	k;
 
 	i = 0;
 	k = 0;

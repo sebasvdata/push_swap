@@ -12,12 +12,12 @@
 
 #include "../push_swap.h"
 
-void ft_adaptive(t_stack *a,t_stack * b, t_benchmark *bench)
+void	ft_adaptive(t_stack *a, t_stack *b, t_benchmark *bench)
 {
-	if(bench->disorder<200)
-		ft_simple(a,b,bench);
-	else if( bench->disorder >= 2000 && bench->disorder < 5000)
-		ft_medium(a,b,bench);
-	else 
-		radix_sort(a,b,bench);
+	if (bench->disorder < 2000)
+		ft_simple(a, b, bench);
+	else if (bench->disorder >= 2000 && bench->disorder < 5000)
+		ft_medium(a, b, bench);
+	else
+		radix_sort(a, b, bench);
 }

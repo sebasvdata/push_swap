@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../push_swap.h"
+#include "../push_swap.h"
 
 static int	len_string(char *s)
 {
@@ -97,6 +97,6 @@ char	*get_next_line(int fd)
 		bytes = read(fd, buffer, 64);
 	}
 	if (bytes == -1)
-		return (free(line), (NULL));
+		return (free(line), NULL);
 	return (line);
 }

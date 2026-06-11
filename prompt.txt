@@ -1,5 +1,0 @@
-before every thing read subject and understand it so good1 i did the project when i complile its worrking i want you to refactor every thing 
-i mean you fix norminnte you chose better name (only the nearset to mine) or keep mine if already better name 
-you do makefile for push_swap and bonus the checker btw the checker use some utilits too 
-at this point dont check logic or bugs keep my logc and same behvior warning be carful keep logic and same behvior and things function same way i done theme only refactore project for better presention but stick to my logic and my way  if noitece any bug at this point put your noitec in noitce.txt
-by the end normminte should be fix and make file

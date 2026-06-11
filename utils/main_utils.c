@@ -6,11 +6,33 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:31 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/11 00:51:32 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/11 02:33:55 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+static int	verfier_before_joining(char **s, int ac)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < ac)
+	{
+		j = 0;
+		while (s[i][j])
+		{
+			if (s[i][j] != ' ')
+				break ;
+			j++;
+		}
+		if (!(s[i][j]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	liberty(t_stack *a, t_stack *b, char **splited)
 {
@@ -25,19 +47,25 @@ int	liberty(t_stack *a, t_stack *b, char **splited)
 
 int	init_stack(char ***av, int *ac)
 {
-	char *joined;
-	joined = join_args(*av , *ac);
-	if(!joined)
-		return 1;
+	char	*joined;
+
+	if (verfier_before_joining(*av, *ac))
+	{
+		*av = NULL;
+		return (1);
+	}
+	joined = join_args(*av, *ac);
+	if (!joined)
+		return (1);
 	*av = ft_split(joined, ' ');
-	if(!(*av) || *ac > ft_count_words(joined, ' '))
-		return 1;
+	if (!(*av))
+		return (1);
 	*ac = ft_count_words(joined, ' ');
 	free(joined);
 	return (0);
 }
 
-int	ft_error(t_stack *a, t_stack *b,char **av)
+int	ft_error(t_stack *a, t_stack *b, char **av)
 {
 	liberty(a, b, av);
 	write(2, "Error\n", 6);

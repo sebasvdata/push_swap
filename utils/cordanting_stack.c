@@ -10,62 +10,70 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"../push_swap.h"
-static void ft_memcpy(int *dst,int*src,int n)
-{
-	while(--n >=0)
-		dst[n]=src[n];
-}
-static void bubble_sort(int *tab,int size)
-{
-        int looping;
-        int min;
-        int i;
-        looping=1;
-        while(looping)
-        {
-                i=size-1;
-                looping=0;
-                while(i > 0)
-                {
-                        if(tab[i] < tab[i-1])
-                        {
-                                min=tab[i-1];
-                                tab[i-1]=tab[i];
-                                tab[i]=min;
-                                looping=1;
+#include "../push_swap.h"
 
-                        }
-                        i--;
-                }
-        }
-}
-int normlize_stack(t_stack *a)
+static void	ft_memcpy(int *dst, int *src, int n)
 {
-	int *tab;
-	int i;
-	int j;
+	while (--n >= 0)
+		dst[n] = src[n];
+}
 
-	tab=malloc((a->size)*sizeof(int));
-	if(!tab)
-		return 1;
-	ft_memcpy(tab,a->tab,a->size);
-	bubble_sort(tab,a->size);
-	i=0;
-	while(i< a->size)
+static void	bubble_sort(int *tab, int size)
+{
+	int	looping;
+	int	min;
+	int	i;
+
+	looping = 1;
+	while (looping)
 	{
-		j=0;
-		while(j< a->size)
+		i = size - 1;
+		looping = 0;
+		while (i > 0)
 		{
-			if(a->tab[i]==tab[j])
+			if (tab[i] < tab[i - 1])
 			{
-				a->tab[i]=j;
-				break;
+				min = tab[i - 1];
+				tab[i - 1] = tab[i];
+				tab[i] = min;
+				looping = 1;
 			}
-			j++;
+			i--;
 		}
+	}
+}
+
+static void	set_index(t_stack *a, int *tab, int i)
+{
+	int	j;
+
+	j = 0;
+	while (j < a->size)
+	{
+		if (a->tab[i] == tab[j])
+		{
+			a->tab[i] = j;
+			break ;
+		}
+		j++;
+	}
+}
+
+int	normalize_stack(t_stack *a)
+{
+	int	*tab;
+	int	i;
+
+	tab = malloc((a->size) * sizeof(int));
+	if (!tab)
+		return (1);
+	ft_memcpy(tab, a->tab, a->size);
+	bubble_sort(tab, a->size);
+	i = 0;
+	while (i < a->size)
+	{
+		set_index(a, tab, i);
 		i++;
 	}
-
-	return free(tab),0;
+	return (free(tab), 0);
 }
