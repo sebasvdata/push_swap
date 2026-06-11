@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:11 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/11 01:14:47 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/12 00:52:58 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	do_push_rotate(char *s, t_stack *a, t_stack *b)
 		return (rotate_stack(b, 0));
 	else if (!ft_strcmp(s, "rr\n"))
 		return (rotate_stack(a, 0) && rotate_stack(b, 0));
-	return (0);
+	return (-1);
 }
 
 static int	do_reverse_swap(char *s, t_stack *a, t_stack *b)
@@ -41,14 +41,14 @@ static int	do_reverse_swap(char *s, t_stack *a, t_stack *b)
 		return (swap_stack(b, 0));
 	else if (!ft_strcmp(s, "ss\n"))
 		return (swap_stack(a, 0) && swap_stack(b, 0));
-	return (0);
+	return (-1);
 }
 
 static int	ft_operation(char *s, t_stack *a, t_stack *b)
 {
-	if (do_push_rotate(s, a, b))
+	if (do_push_rotate(s, a, b) != -1)
 		return (1);
-	if (do_reverse_swap(s, a, b))
+	if (do_reverse_swap(s, a, b) != -1)
 		return (1);
 	return (0);
 }
@@ -58,12 +58,16 @@ static int	check_operation(t_stack *a, t_stack *b)
 	char	*s;
 
 	s = get_next_line(0);
+	if (s && !ft_strcmp(s, "erorr"))
+		return (0);
 	while (s)
 	{
 		if (ft_operation(s, a, b))
 		{
 			free(s);
 			s = get_next_line(0);
+			if (s && !ft_strcmp(s, "erorr"))
+				return (0);
 		}
 		else
 		{
@@ -88,8 +92,6 @@ int	main(int ac, char **av)
 	a = ft_verifier(av, ac, 0);
 	if (!a)
 		return (ft_error(NULL, NULL, av));
-	if (a->top < 1 || ft_is_sorted(a))
-		return (liberty(a, NULL, av), write(1, "OK\n", 3));
 	b = create_stack(ac - 1);
 	if (!b)
 		return (ft_error(a, NULL, av));

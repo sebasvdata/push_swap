@@ -19,7 +19,8 @@ COMMON_SRCS = \
 	sort/ft_complex.c \
 	sort/ft_radix_utils.c \
 	sort/ft_meduim.c \
-	sort/ft_simple.c
+	sort/ft_simple.c \
+	sort/ft_sort_small.c
 
 SRCS = utils/main.c $(COMMON_SRCS)
 BONUS_SRCS = bonus/checker.c bonus/get_next_line.c $(COMMON_SRCS)

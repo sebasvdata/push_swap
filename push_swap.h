@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/13 00:00:00 by youssef           #+#    #+#             */
-/*   Updated: 2026/06/11 01:20:18 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:01:50 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ int		radix_next_digits(t_stack *a, int *upper, int *bottom);
 int		radix_smart_rotate(t_stack *a, t_stack *b, t_benchmark *bench, int rr);
 void	radix_push_digit(t_stack *a, t_stack *b, t_benchmark *bench, int *rr);
 void	ft_adaptive(t_stack *a, t_stack *b, t_benchmark *bench);
+void	order_three(t_stack *a, t_benchmark *bench);
+void	order_five(t_stack *a, t_stack *b, t_benchmark *bench);
 
 #endif

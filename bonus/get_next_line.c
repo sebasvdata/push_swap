@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 19:37:49 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/10 23:37:11 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/12 00:46:17 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 			break ;
 		bytes = read(fd, buffer, 64);
 	}
-	if (bytes == -1)
-		return (free(line), NULL);
+	if (bytes <= -1)
+		return (free(line), "erorr");
 	return (line);
 }
