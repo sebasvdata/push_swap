@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:31 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/11 02:45:02 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:16:45 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	ft_bzero(void *p, size_t size)
 static char	*strategy_bench(int n)
 {
 	if (n < 2000)
-		return ("adaptive / O(n^2)");
+		return ("Adaptive / O(n^2)");
 	else if (n >= 2000 && n < 5000)
-		return ("adaptive / O(n sqrt(n))");
-	return ("adaptive / O(n log(n))");
+		return ("Adaptive / O(n sqrt(n))");
+	return ("Adaptive / O(n log(n))");
 }
 
 static t_benchmark	*init_bench(t_stack *a, t_option *op)
@@ -69,7 +69,7 @@ static t_benchmark	*init_bench(t_stack *a, t_option *op)
 	if (op->simple)
 		bench->strategy = "Simple / O(n^2)";
 	else if (op->medium)
-		bench->strategy = "medium / O(n sqrt(n))";
+		bench->strategy = "Medium / O(n sqrt(n))";
 	else if (op->complex)
 		bench->strategy = "Complex / O(n log(n))";
 	else

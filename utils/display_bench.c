@@ -6,7 +6,7 @@
 /*   By: yoben-ch <yoben-ch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/10 23:37:31 by yoben-ch          #+#    #+#             */
-/*   Updated: 2026/06/11 02:36:22 by yoben-ch         ###   ########.fr       */
+/*   Updated: 2026/06/12 01:13:01 by yoben-ch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static int	print_disorder(int n)
 	if (n == 10000)
 		return (write(2, "100.00\n", 7));
 	c = div / 10 + '0';
-	write(2, &c, 1);
+	if (c != '0')
+		write(2, &c, 1);
 	c = div % 10 + '0';
 	write(2, &c, 1);
 	write(2, ".", 1);
